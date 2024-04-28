@@ -2,10 +2,10 @@ import { Formik, Field, getIn } from "formik";
 
 import {
 	FormGroup,
-	ControlLabel,
+	FormLabel,
 	FormControl,
-	Checkbox,
-	HelpBlock
+	FormCheck,
+	FormText 
 } from "react-bootstrap";
 
 const BootstrapFieldComponent = ({
@@ -22,7 +22,7 @@ const BootstrapFieldComponent = ({
 	let ControlComponent = FormControl;
 
 	const testType = type.toLowerCase();
-	if (testType === "checkbox") ControlComponent = Checkbox;
+	if (testType === "checkbox") ControlComponent = FormCheck;
 	else if (testType === "textarea" || testType === "select")
 		props.componentClass = testType;
 	else props.type = type;
@@ -33,11 +33,11 @@ const BootstrapFieldComponent = ({
 			validationState={isError ? "error" : null}
 			style={{ marginLeft: 0, marginRight: 0 }}
 		>
-			{label && <ControlLabel>{label}</ControlLabel>}
+			{label && <FormLabel>{label}</FormLabel>}
 			<ControlComponent {...field} {...props} />
-			{isError && <HelpBlock>{errorMsg}</HelpBlock>}
-			{help && !isError && <HelpBlock>{help}</HelpBlock>}
-			{isError && showIcon && <FormControl.Feedback />}
+			{isError && <FormText className="text-danger">{errorMsg}</FormText>}
+			{help && !isError && <FormText className="text-muted">{help}</FormText>}
+			{isError && showIcon && <FormControl.Feedback type="invalid" />}
 		</FormGroup>
 	);
 };

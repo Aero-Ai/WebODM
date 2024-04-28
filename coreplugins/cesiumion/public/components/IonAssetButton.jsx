@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
 
-import { DropdownButton, MenuItem } from "react-bootstrap";
+import { DropdownButton, Dropdown, MenuItem } from "react-bootstrap";
 
 import IonAssetLabel from "./IonAssetLabel";
 import { AssetStyles } from "../defaults";
@@ -29,13 +29,13 @@ export default class IonAssetButton extends PureComponent {
 				AssetStyles[a].name.localeCompare(AssetStyles[b].name)
 			)
 			.map(asset => (
-				<MenuItem
+				<Dropdown.Item
 					key={asset}
 					tag={"a"}
 					onClick={this.handleClick(asset)}
 				>
 					<AssetComponent asset={asset} showIcon={true} />
-				</MenuItem>
+				</Dropdown.Item>
 			));
 
 		const title = (
