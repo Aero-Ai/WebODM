@@ -155,28 +155,6 @@ export default class UploadDialog extends Component {
 		}
 	}
 
-	getValidation() {
-		let errors = {};
-        if (!values.name) {
-            errors.name = "A name is required!";
-        }
-
-        switch (UploadDialog.AssetSourceType[this.props.asset]) {
-            case SourceType.RASTER_TERRAIN:
-                if (typeof values.options.baseTerrainId !== "string") {
-                    errors.baseTerrainId = "Invalid value!";
-                }
-                break;
-            case SourceType.CAPTURE:
-                if (typeof values.options.textureFormat !== "boolean") {
-                    errors.textureFormat = "Invalid value!";
-                }
-                break;
-        }
-
-        return errors;
-	}
-
 	render() {
 		return (
             <FormDialog
